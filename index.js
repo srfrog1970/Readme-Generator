@@ -2,6 +2,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
 
+const writeFileAsync = util.promisify(fs.writeFile);
 const appendFileAsync = util.promisify(fs.appendFile);
 // const questionsGroup1 = [
 //   {
@@ -52,48 +53,57 @@ const questions = [
     name: "contibuterepo"
   }
 ];
-function init() {
-  inquirer
-    .prompt(questions)
-    .then(function(response) {
-      buildReadme(response);
-      //   console.log(projectname);
-      //   console.log(desc);
-      //   console.log(licence);
-      //   console.log(installdep);
-      //   console.log(tests)
-      //   console.log(usingrepo)
-      //   console.log(contibuterepo)
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
 
-init();
+// function init() {
+//   inquirer
+//     .prompt(questions)
+//     .then(function(response) {
+//       buildReadme(response);
+//       //   console.log(projectname);
+//       //   console.log(desc);
+//       //   console.log(licence);
+//       //   console.log(installdep);
+//       //   console.log(tests)
+//       //   console.log(usingrepo)
+//       //   console.log(contibuterepo)
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// }
+
+// init();
 
 function buildReadme(response) {
-  var {
-    projectname,
-    desc,
-    licence,
-    installdep,
-    tests,
-    usingrepo,
-    contibuterepo
-  } = response;
+  //   var {
+  //     projectname,
+  //     desc,
+  //     licence,
+  //     installdep,
+  //     tests,
+  //     usingrepo,
+  //     contibuterepo
+  //   } = response;
+  var projectname = "projectname";
+  var desc = "description";
+  var licence = "licence";
+  var installdep = "Install Dependancies";
+  var tests = "Tests";
+  var usingrepo = "USing the Repo";
+  var contibuterepo = "Contributing to the Repo";
 
-  var projectTitle = `# ${projectname} \n--- \n\n `;
-  writeToFile(projectTitle);
+  readmeFile = `# Project Name: \n ${projectname} \n--- \n\n`;
+  readmeFile += `## Description: \n ${desc} \n---\n\n`;
+  readmeFile += `## License: \n ${licence} \n---\n\n`;
+  readmeFile += `## Installation Dependencies: \n ${installdep} \n---\n\n`;
+  readmeFile += `## Tests: \n ${tests} \n---\n\n`;
+  readmeFile += `## Using the Repo: \n ${usingrepo} \n---\n\n`;
+  readmeFile += `## Contributions: \n ${contibuterepo} \n---\n\n`;
+
+  writeFileAsync("README.md", readmeFile, "utf8");
 }
+buildReadme("test");
 
 function checkUserName(username) {
   console.log(username);
-}
-
-function writeToFile(readmeData) {
-  fs.writeFile("README.md", readmeData, err => {
-    if (err) throw err;
-    console.log("The file has been saved!");
-  });
 }
