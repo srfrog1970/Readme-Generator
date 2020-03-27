@@ -1,0 +1,26 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srfrog1970/Readme-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srfrog1970/Readme-Generator/issues"
+  },
+  "homepage": "https://github.com/srfrog1970/Readme-Generator#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "github-api": "^3.3.0",
+    "inquirer": "^7.1.0",
+    "utility": "^1.16.3"
+  }
+}
