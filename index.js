@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
+const axios = require("axios");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 const appendFileAsync = util.promisify(fs.appendFile);
@@ -54,56 +55,54 @@ const questions = [
   }
 ];
 
-// function init() {
-//   inquirer
-//     .prompt(questions)
-//     .then(function(response) {
-//       buildReadme(response);
-//       //   console.log(projectname);
-//       //   console.log(desc);
-//       //   console.log(licence);
-//       //   console.log(installdep);
-//       //   console.log(tests)
-//       //   console.log(usingrepo)
-//       //   console.log(contibuterepo)
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// }
+function init() {
+  inquirer
+    .prompt(questions)
+    .then(function(response) {
+      var {
+        username,
+        projectname,
+        desc,
+        licence,
+        installdep,
+        tests,
+        usingrepo,
+        contibuterepo
+      } = response;
 
-// init();
+      readmeFile = `# Project Name: \n **${projectname}** \n\n`;
+      readmeFile += `## Description: \n ${desc} \n\n`;
+      readmeFile += `## License: \n ${licence} \n\n`;
+      readmeFile += `## Installation Dependencies: \n ${installdep} \n\n`;
+      readmeFile += `## Tests: \n ${tests} \n\n`;
+      readmeFile += `## Using the Repo: \n ${usingrepo} \n\n`;
+      readmeFile += `## Contributions: \n ${contibuterepo} \n\n`;
 
-function buildReadme(response) {
-  //   var {
-  //     projectname,
-  //     desc,
-  //     licence,
-  //     installdep,
-  //     tests,
-  //     usingrepo,
-  //     contibuterepo
-  //   } = response;
-  var projectname = "projectname";
-  var desc = "description";
-  var licence = "licence";
-  var installdep = "Install Dependancies";
-  var tests = "Tests";
-  var usingrepo = "USing the Repo";
-  var contibuterepo = "Contributing to the Repo";
+      //   const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+      //   console.log(queryUrl);
+      //   axios.get(queryUrl).then(function(res) {
+      //     const repoNames = res.data.map(function(repo) {
+      //       readmeFile += `## Authors: \n ${repo} \n\n`;
+      //       writeFileAsync("README.md", readmeFile, "utf8");
+      //     });
+      //   });
 
-  readmeFile = `# Project Name: \n ${projectname} \n--- \n\n`;
-  readmeFile += `## Description: \n ${desc} \n---\n\n`;
-  readmeFile += `## License: \n ${licence} \n---\n\n`;
-  readmeFile += `## Installation Dependencies: \n ${installdep} \n---\n\n`;
-  readmeFile += `## Tests: \n ${tests} \n---\n\n`;
-  readmeFile += `## Using the Repo: \n ${usingrepo} \n---\n\n`;
-  readmeFile += `## Contributions: \n ${contibuterepo} \n---\n\n`;
-
-  writeFileAsync("README.md", readmeFile, "utf8");
+      writeFileAsync("README.md", readmeFile, "utf8");
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
-buildReadme("test");
+
+init();
 
 function checkUserName(username) {
-  console.log(username);
+  const queryUrl = `https://api.github.com/users/${username}/emails?per_page=100`;
+  console.log(queryUrl);
+  axios.get(queryUrl).then(function(res) {
+    const repoNames = res.data.map(function(repo) {
+      console.log(repo.name);
+      return repo.name;
+    });
+  });
 }

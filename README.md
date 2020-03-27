@@ -1,28 +1,21 @@
 # Project Name: 
- projectname 
---- 
+ **Readme Generator** 
 
 ## Description: 
- description 
----
+ This will assist users in creating a readme.md file for their project 
 
 ## License: 
- licence 
----
+ NA 
 
 ## Installation Dependencies: 
- Install Dependancies 
----
+ See package.json 
 
 ## Tests: 
- Tests 
----
+ NA 
 
 ## Using the Repo: 
- USing the Repo 
----
+ It is a terminal prompting application 
 
 ## Contributions: 
- Contributing to the Repo 
----
+ NA 
 
