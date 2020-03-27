@@ -56,19 +56,11 @@ function init() {
   inquirer
     .prompt(questions)
     .then(function(response) {
-      var {
-        projectname,
-        desc,
-        licence,
-        installdep,
-        tests,
-        usingrepo,
-        contibuterepo
-      } = response;
-      console.log(projectname);
-      console.log(desc);
-      console.log(licence);
-      console.log(installdep);
+      buildReadme(response);
+      //   console.log(projectname);
+      //   console.log(desc);
+      //   console.log(licence);
+      //   console.log(installdep);
       //   console.log(tests)
       //   console.log(usingrepo)
       //   console.log(contibuterepo)
@@ -80,12 +72,27 @@ function init() {
 
 init();
 
+function buildReadme(response) {
+  var {
+    projectname,
+    desc,
+    licence,
+    installdep,
+    tests,
+    usingrepo,
+    contibuterepo
+  } = response;
+
+  var projectTitle = `# ${projectname} \n--- \n\n `;
+  writeToFile(projectTitle);
+}
+
 function checkUserName(username) {
   console.log(username);
 }
 
-function writeToFile(fileName, data) {
-  fs.writeFile("README,md", readmeData, err => {
+function writeToFile(readmeData) {
+  fs.writeFile("README.md", readmeData, err => {
     if (err) throw err;
     console.log("The file has been saved!");
   });
