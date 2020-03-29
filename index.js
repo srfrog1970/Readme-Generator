@@ -53,6 +53,11 @@ const questions = [
     message: "What does the user need to know about contributing to the repo?",
     name: "contibuterepo"
   }
+  {
+    type: "input",
+    message: "Code Highlights",
+    name: "codeHighlights"
+  }
 ];
 
 function init() {
@@ -67,7 +72,8 @@ function init() {
         installdep,
         tests,
         usingrepo,
-        contibuterepo
+        contibuterepo,
+        codeHighlights
       } = response;
 
       readmeFile = `# Project Name: \n **${projectname}** \n\n`;
@@ -77,6 +83,7 @@ function init() {
       readmeFile += `## Tests: \n ${tests} \n\n`;
       readmeFile += `## Using the Repo: \n ${usingrepo} \n\n`;
       readmeFile += `## Contributions: \n ${contibuterepo} \n\n`;
+      readmeFile += `## Code Highlights: \n ${codeHighlights} \n\n`;
 
       //   const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
       //   console.log(queryUrl);
