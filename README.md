@@ -1,21 +1,24 @@
 # Project Name: 
- **Readme Generator** 
+ **Employee-Summary** 
 
 ## Description: 
- This will assist users in creating a readme.md file for their project 
+ This will prompt the user for all the employees and render them on a page 
 
 ## License: 
- NA 
+ na 
 
 ## Installation Dependencies: 
- See package.json 
+ npm Install 
 
 ## Tests: 
- NA 
+ npm test 
 
 ## Using the Repo: 
- It is a terminal prompting application 
+ NA 
 
 ## Contributions: 
  NA 
+
+## Code Highlights: 
+ Uses rendering, OOP, jest testing, HTML Templates 
 

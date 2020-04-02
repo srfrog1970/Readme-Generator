@@ -52,7 +52,7 @@ const questions = [
     type: "input",
     message: "What does the user need to know about contributing to the repo?",
     name: "contibuterepo"
-  }
+  },
   {
     type: "input",
     message: "Code Highlights",
